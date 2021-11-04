@@ -11,8 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+mix.postCss('resources/css/plugins/fontawesome-free/css/all.min.css', 'public/css/plugins/fontawesome')
+    .postCss('resources/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css', 'public/css/plugins/icheck-bootstrap')
+    .postCss('resources/css/app.css', 'public/css');
+
+mix.js([
+    'resources/js/plugins/jquery/jquery.js',
+    'resources/js/plugins/bootstrap/js/bootstrap.bundle.js',
+    'resources/js/app.js'
+], 'public/js/app.js');
+
+if (mix.inProduction()) {
+    mix.version();
+}
+
+
