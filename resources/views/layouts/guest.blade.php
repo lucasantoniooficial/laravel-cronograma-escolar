@@ -11,12 +11,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
+        <link rel="stylesheet" href="{{ mix('css/plugins/fontawesome/all.min.css') }}">
+        <link rel="stylesheet" href="{{mix('css/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
+    <body class="hold-transition login-page">
+        {{ $slot }}
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}"></script>
