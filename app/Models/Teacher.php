@@ -26,4 +26,23 @@ class Teacher extends Model
     {
         return $this->belongsToMany(Team::class);
     }
+
+    public function scopeUpdateUser($query, $data)
+    {
+        $this->update($data);
+
+        $this->user->update($data);
+
+        return $this;
+    }
+
+    public function scopeDeleteUser()
+    {
+
+        $this->user->delete();
+
+        $this->delete();
+
+        return $this;
+    }
 }

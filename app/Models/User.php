@@ -55,4 +55,12 @@ class User extends Authenticatable
             $this->attributes['password'] = bcrypt($value);
         }
     }
+
+    public function scopeCreateTeacher($query, $data)
+    {
+        $user = $this->create($data);
+        $user->teacher()->create($data);
+
+        return $user->teacher;
+    }
 }
