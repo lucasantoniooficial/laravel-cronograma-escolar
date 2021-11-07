@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-3">
-                        <button class="btn btn-primary">Cadastrar</button>
+                        <button class="btn btn-primary">Editar</button>
                         <a href="{{route('admin.teachers.index')}}" class="btn btn-danger">Voltar</a>
                     </div>
                 </form>
