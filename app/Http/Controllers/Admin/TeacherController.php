@@ -58,12 +58,14 @@ class TeacherController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Teacher $teacher)
     {
-        //
+        return view('admin.teacher.show',[
+            'teacher' => $teacher
+        ]);
     }
 
     /**

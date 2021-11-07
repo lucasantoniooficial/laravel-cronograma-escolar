@@ -24,7 +24,7 @@ class Teacher extends Model
 
     public function teams()
     {
-        return $this->belongsToMany(Team::class);
+        return $this->belongsToMany(Team::class, 'team_teacher');
     }
 
     public function scopeUpdateUser($query, $data)

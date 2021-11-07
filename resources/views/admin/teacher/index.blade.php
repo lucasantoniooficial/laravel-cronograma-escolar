@@ -21,7 +21,7 @@
                     <tbody>
                         @forelse($teachers as $teacher)
                             <tr>
-                                <td>{{$teacher->user->name}}</td>
+                                <td><a href="{{route('admin.teachers.show', $teacher->id)}}">{{$teacher->user->name}}</a></td>
                                 <td>{{$teacher->user->email}}</td>
                                 <td>{{$teacher->registration}}</td>
                                 <td>
