@@ -27,11 +27,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('admin.teachers.edit', $teacher->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="{{route('admin.teachers.destroy', $teacher->id)}}" onclick="event.preventDefault(); document.getElementById('form-delete-{{$teacher->id}}').submit();" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        <form action="{{route('admin.teachers.destroy', $teacher->id)}}" class="d-none" id="form-delete-{{$teacher->id}}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                        </form>
+                                        <button type="button" id="delete-button" data-teacher-id="{{$teacher->id}}" class="btn btn-danger"><i data-teacher-id="{{$teacher->id}}" class="fas fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -49,4 +45,22 @@
             </div>
         </div>
     </div>
+    @push('script')
+        <script>
+            confirmation('delete-button', 'Você realmente deseja excluir ?', 'info', function(e) {
+                const teacherId = e.target.getAttribute('data-teacher-id');
+                fetch(`/admin/teachers/${teacherId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{csrf_token()}}'
+                    }
+                }).then(e => {
+                    setTimeout(function() {
+                        window.location.reload()
+                    }, 2500);
+                });
+            });
+        </script>
+    @endpush
 </x-app-layout>
+

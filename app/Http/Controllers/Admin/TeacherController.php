@@ -105,8 +105,8 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        $teacher->deleteUser();
+        session()->put('deleted','Professor excluido com sucesso');
 
-        return back();
+        return $teacher->deleteUser();
     }
 }
