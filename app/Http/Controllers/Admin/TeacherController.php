@@ -50,7 +50,9 @@ class TeacherController extends Controller
     {
         $data = $request->validated();
 
-        User::createTeacher($data);
+        $user = User::create($data);
+
+        $user->teacher()->create($data);
 
         return back();
     }
@@ -92,7 +94,9 @@ class TeacherController extends Controller
     {
         $data = $request->validated();
 
-        $teacher->updateUser($data);
+        $teacher->update($data);
+
+        $teacher->user->update($data);
 
         return redirect()->route('admin.teachers.index');
     }
@@ -107,6 +111,8 @@ class TeacherController extends Controller
     {
         session()->put('deleted','Professor excluido com sucesso');
 
-        return $teacher->deleteUser();
+        $teacher->user()->delete();
+
+        return $teacher->delete();
     }
 }

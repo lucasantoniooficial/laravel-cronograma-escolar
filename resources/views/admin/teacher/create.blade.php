@@ -11,7 +11,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="name">Nome</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" value="{{old('name')}}" class="form-control" id="name" name="name">
                                 @error('name')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
@@ -20,7 +20,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="email">E-mail</label>
-                                <input type="email" name="email" id="email" class="form-control">
+                                <input type="email" value="{{old('email')}}" name="email" id="email" class="form-control">
                                 @error('email')
                                 <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
@@ -29,7 +29,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="registration">Matricula</label>
-                                <input type="number" name="registration" id="registration" class="form-control">
+                                <input type="number" value="{{old('registration')}}" name="registration" id="registration" class="form-control">
                                 @error('registration')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
@@ -40,7 +40,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="password">Senha</label>
-                                <input type="password" name="password" id="password" class="form-control">
+                                <input type="password" value="{{old('password')}}" name="password" id="password" class="form-control">
                                 @error('password')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
@@ -49,7 +49,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="password_confirmation">Confirmar Senha</label>
-                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                                <input type="password" value="{{old('password_confirmation')}}" name="password_confirmation" id="password_confirmation" class="form-control">
                                 @error('password_confirmation')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
