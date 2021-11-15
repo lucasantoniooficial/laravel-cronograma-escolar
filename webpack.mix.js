@@ -18,6 +18,7 @@ mix.postCss('resources/css/plugins/fontawesome-free/css/all.min.css', 'public/cs
 mix.js([
     'resources/js/plugins/jquery/jquery.js',
     'resources/js/plugins/bootstrap/js/bootstrap.bundle.js',
+    'resources/js/plugins/sweetalert/sweetalert.js',
     'resources/js/app.js'
 ], 'public/js/app.js');
 
