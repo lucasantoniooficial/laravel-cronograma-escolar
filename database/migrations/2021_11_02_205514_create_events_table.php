@@ -18,6 +18,8 @@ class CreateEventsTable extends Migration
             $table->foreignId('teacher_id')->nullable()->constrained('teachers')->cascadeOnDelete();
             $table->string('name');
             $table->date('date');
+            $table->text('description')->nullable();
+            $table->boolean('recorrency')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

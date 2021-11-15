@@ -60,6 +60,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('admin.events.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Eventos
+                            {{--                            <span class="right badge badge-danger">New</span>--}}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>

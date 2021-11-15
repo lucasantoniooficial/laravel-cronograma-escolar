@@ -12,6 +12,10 @@ class Event extends Model
 
     protected $fillable = ['teacher_id', 'name','date'];
 
+    protected $casts = [
+        'date' => 'datetime:d/m/Y'
+    ];
+
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);

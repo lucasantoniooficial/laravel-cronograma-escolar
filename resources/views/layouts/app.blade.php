@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/plugins/fontawesome/all.min.css') }}">
     <link rel="stylesheet" href="{{mix('css/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{mix('css/plugins/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{mix('css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 </head>
@@ -58,6 +60,8 @@
 </div>
 
 <!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{{ mix('js/app.js') }}"></script>
 <script>
     @if(session()->has('created'))
