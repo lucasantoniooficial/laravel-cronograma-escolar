@@ -1,6 +1,10 @@
 {
+    "/js/plugin/jquery/jquery.js": "/js/plugin/jquery/jquery.js",
+    "/js/plugin/select2/select2.js": "/js/plugin/select2/select2.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css": "/css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css",
+    "/css/plugins/select2/select2.min.css": "/css/plugins/select2/select2.min.css",
     "/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css": "/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
     "/css/plugins/fontawesome/all.min.css": "/css/plugins/fontawesome/all.min.css"
 }
