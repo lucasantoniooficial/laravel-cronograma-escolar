@@ -1,1 +1,1 @@
-<b>Admin</b>LTE
+<b>Cronograma</b>Escolar
