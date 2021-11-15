@@ -5,23 +5,32 @@
     <div class="container-fluid">
         <div class="card card-primary card-outline">
             <div class="card-body">
-                <form action="{{route('admin.events.store')}}" method="post">
+                <form action="{{route('admin.teams.store')}}" method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="name">Nome</label>
-                                <input type="text" class="form-control" id="name" name="name">
-                                @error('name')
+                                <label for="code">Código</label>
+                                <input type="text" class="form-control" id="code" name="code">
+                                @error('code')
                                     <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="date">Data</label>
-                                <input type="date" name="date" id="date" class="form-control">
-                                @error('date')
+                                <label for="name">Nome</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                                @error('name')
+                                <div class="alert alert-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="start">Data início</label>
+                                <input type="date" name="start" id="start" class="form-control">
+                                @error('start')
                                 <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
                             </div>
@@ -30,28 +39,28 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="description">Observação</label>
-                                <textarea name="description" id="description" class="form-control"></textarea>
-                                @error('description')
+                                <label for="hours">Quantidade de horas</label>
+                                <input type="number" name="hours" id="hours" class="form-control">
+                                @error('hours')
                                 <div class="alert alert-danger">{{$message}}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="recorrency">Recorrente</label>
-                                <select name="recorrency" id="recorrency" class="form-control">
-                                    <option value="1">Sim</option>
-                                    <option value="0" selected>Não</option>
-                                </select>
+                                <label for="color">Cor</label>
+                                <input type="color" name="color" id="color" class="form-control">
+                                @error('color')
+                                <div class="alert alert-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="teacher_id">Professor</label>
-                        <select name="teacher_id" id="teacher_id" class="form-control">
-                            @foreach($teachers as $teacher)
-                                <option value="{{$teacher->id}}">{{$teacher->user->name}}</option>
+                        <label for="weeks">Dias da semana</label>
+                        <select multiple name="weeks[]" id="weeks" class="form-control">
+                            @foreach($weeks as $week)
+                                <option value="{{$week->id}}">{{$week->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -65,8 +74,10 @@
     </div>
     @push('script')
         <script>
-            $('#teacher_id').select2({
-                placeholder: "Selecione"
+            $('#weeks').select2({
+                placeholder: 'Selecione',
+                theme: "classic",
+                allowClear: true
             });
         </script>
     @endpush
