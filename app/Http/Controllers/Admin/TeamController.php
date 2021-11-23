@@ -62,9 +62,11 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Team $team)
     {
-        //
+        return view('admin.team.show', [
+            'team' => $team
+        ]);
     }
 
     /**
@@ -75,8 +77,10 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
+        $weeks = Week::all();
         return view('admin.team.edit', [
-            'team' => $team
+            'team' => $team,
+            'weeks' => $weeks
         ]);
     }
 
@@ -92,6 +96,8 @@ class TeamController extends Controller
         $data = $request->validated();
 
         $team->update($data);
+
+        $team->weeks()->sync($data['weeks']);
 
         return redirect()->route('admin.teams.index');
     }

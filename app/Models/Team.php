@@ -17,14 +17,16 @@ class Team extends Model
         'start' => 'datetime:d/m/Y'
     ];
 
+    protected $with = ['events','weeks'];
+
     public function teachers()
     {
-        return $this->belongsToMany(Teacher::class);
+        return $this->belongsToMany(Teacher::class,'team_teacher');
     }
 
     public function events()
     {
-        return $this->belongsToMany(Event::class);
+        return $this->belongsToMany(Event::class,'event_team','teams_id','event_id');
     }
 
     public function weeks()
@@ -36,24 +38,23 @@ class Team extends Model
     {
         $days = $this->attributes['hours'] / 4;
         $start = $this->start;
-        foreach($this->weeks as $week) {
-            $dias[] = $week->code;
-        }
-
-        $start = new \DateTime( $start->format('Y-m-d'));
+        $dias = $this->weeks->pluck('code');
+        $feriados = $this->events->map(fn($item) => $item->date->format('Y-m-d'));
 
         for($i = 0; $i < $days ; $i++) {
-            for($j = 1 ; $j <= 7 ; $j++) {
-                if(in_array($start->format('N'), $dias)) {
-                    echo($start->format('d/m/Y')."<br>");
-                    $start->add(new \DateInterval('P1D'));
-                    break;
+            for($j = 1 ; $j <= 7; $j++) {
+                if($dias->contains($start->format('N'))) {
+                    if(!$feriados->contains($start->format('Y-m-d'))) {
+                        $start->addDay(1);
+                        break;
+                    }
+
+                    $j = 0;
                 }
-                $start->add(new \DateInterval('P1D'));
+                $start->addDay(1);
             }
         }
-        dd($start->modify('-1 day'));
-        exit;
-//        return $this->attributes['start']->addHours($this->attributes['hours'])->format('d/m/Y');
+
+        return $start->subDay(1)->format('d/m/Y');
     }
 }

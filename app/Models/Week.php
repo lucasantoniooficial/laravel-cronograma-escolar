@@ -10,7 +10,11 @@ class Week extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'code'];
+
+    protected $casts = [
+        'code' => 'integer'
+    ];
 
     public function teams()
     {

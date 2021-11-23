@@ -23,6 +23,6 @@ class Event extends Model
 
     public function teams()
     {
-        return $this->belongsToMany(Team::class);
+        return $this->belongsToMany(Team::class, 'event_team','teams_id','event_id');
     }
 }

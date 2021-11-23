@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        Eventos
+        Turmas
     </x-slot>
     <div class="container-fluid">
         <div class="card card-primary card-outline">

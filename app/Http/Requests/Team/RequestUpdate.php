@@ -28,7 +28,8 @@ class RequestUpdate extends FormRequest
             'name' => 'required',
             'start' => 'required',
             'hours' => 'required',
-            'color' => 'required'
+            'color' => 'required',
+            'weeks' => 'required'
         ];
     }
 }
