@@ -26,6 +26,8 @@ mix.js([
     'resources/js/app.js'
 ], 'public/js/app.js');
 
+mix.js('resources/js/team/calendar.js','public/js/team');
+
 if (mix.inProduction()) {
     mix.version();
 }

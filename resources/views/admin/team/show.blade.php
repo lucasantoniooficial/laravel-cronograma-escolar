@@ -71,11 +71,7 @@
                 </table>
                 <hr>
                 <h6>Calendário</h6>
-                <div class="row">
-                    <div class="col-6">
-                        <div id="calendario"></div>
-                    </div>
-                </div>
+                <div id="container-calendar" class="row"></div>
                 <div class="mt-2 d-flex justify-content-center">
                     <a href="{{route('admin.teachers.index')}}" class="btn btn-danger">Voltar</a>
                 </div>
@@ -83,15 +79,6 @@
         </div>
     </div>
     @push('script')
-        <script>
-            const calendar = new FullCalendar.Calendar(document.getElementById('calendario'), {
-                initialView: 'dayGridMonth',
-                locale: 'pt-br',
-                themeSystem: 'bootstrap',
-                initialDate: '{{$team->start->format('Y-m-d')}}',
-            });
-
-            calendar.render();
-        </script>
+        <script src="{{mix('js/team/calendar.js')}}"></script>
     @endpush
 </x-app-layout>

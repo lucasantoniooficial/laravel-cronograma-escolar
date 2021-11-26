@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Events;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Team extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Events;
 
     protected $fillable = ['name','code','start','hours','color'];
 
@@ -36,25 +37,16 @@ class Team extends Model
 
     public function getEndAttribute()
     {
-        $days = $this->attributes['hours'] / 4;
-        $start = $this->start;
-        $dias = $this->weeks->pluck('code');
-        $feriados = $this->events->map(fn($item) => $item->date->format('Y-m-d'));
+        return $this->calculateDateEnd($this->days, $this->start, $this->weeks->pluck('code'), $this->holidays);
+    }
 
-        for($i = 0; $i < $days ; $i++) {
-            for($j = 1 ; $j <= 7; $j++) {
-                if($dias->contains($start->format('N'))) {
-                    if(!$feriados->contains($start->format('Y-m-d'))) {
-                        $start->addDay(1);
-                        break;
-                    }
+    public function getDaysAttribute()
+    {
+        return $this->attributes['hours'] / 4;
+    }
 
-                    $j = 0;
-                }
-                $start->addDay(1);
-            }
-        }
-
-        return $start->subDay(1)->format('d/m/Y');
+    public function getHolidaysAttribute()
+    {
+        return $this->events->map(fn($item) => $item->date->format('Y-m-d'));
     }
 }
