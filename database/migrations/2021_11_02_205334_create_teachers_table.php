@@ -16,7 +16,7 @@ class CreateTeachersTable extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->char('registration', 5);
+            $table->char('registration', 6);
             $table->timestamps();
             $table->softDeletes();
         });

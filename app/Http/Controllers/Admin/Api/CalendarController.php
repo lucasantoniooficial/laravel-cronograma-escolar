@@ -19,13 +19,19 @@ class CalendarController extends Controller
             $team->weeks->pluck('code'),
             $team->holidays,
             false
-        )->map(function($item) {
+        )->map(function($item) use ($team) {
             return [
-                'title' => 'Dia de aula',
-                'start' => $item
+                'title' => 'Aula',
+                'start' => $item,
+                'backgroundColor' => $team->color,
+                'borderColor' => $team->color
             ];
         })->groupBy(function($item) {
-            return Carbon::create($item['start'])->format('m');
+            return Carbon::create($item['start'])->format('Y');
+        })->transform(function($item){
+            return collect($item)->groupBy(function($item) {
+                return Carbon::create($item['start'])->format('m');
+            })->values();
         })->values();
     }
 }

@@ -29,11 +29,12 @@
                             <td>{{$team->start->format('d/m/Y')}}</td>
                             <td>{{$team->end}}</td>
                             <td>{{$team->hours}}</td>
-                            <td>{{$team->cor}}</td>
+                            <td style="background: {{$team->color}}"></td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{route('admin.teams.edit', $team->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                    <button type="button" id="delete-button" data-id="{{$team->id}}" class="btn btn-danger"><i data-id="{{$team->id}}" class="fas fa-trash"></i></button>
+                                    <a href="{{route('admin.teams.edit', $team->id)}}" class="btn btn-info" title="Editar turma"><i class="fas fa-edit"></i></a>
+                                    <a href="{{route('admin.teams.add.teacher', $team->id)}}" class="btn btn-success" title="Adicionar professor a turma"><i class="fas fa-user-plus"></i></a>
+                                    <button type="button" id="delete-button" data-id="{{$team->id}}" class="btn btn-danger" title="Excluir turma"><i data-id="{{$team->id}}" class="fas fa-trash"></i></button>
                                 </div>
                             </td>
                         </tr>

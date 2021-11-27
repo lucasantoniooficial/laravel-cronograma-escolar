@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Team\RequestCreate;
 use App\Http\Requests\Team\RequestUpdate;
+use App\Models\Teacher;
 use App\Models\Team;
 use App\Models\Week;
 use Illuminate\Http\Request;
@@ -98,6 +99,20 @@ class TeamController extends Controller
         $team->update($data);
 
         $team->weeks()->sync($data['weeks']);
+
+        return redirect()->route('admin.teams.index');
+    }
+
+    public function addTeacher(Team $team)
+    {
+        $teachers = Teacher::with('user')->get();
+
+        return view('admin.team.teacher', ['team' => $team, 'teachers' => $teachers]);
+    }
+
+    public function teacher(Request $request, Team $team)
+    {
+        $team->teachers()->sync($request->teacher_id);
 
         return redirect()->route('admin.teams.index');
     }

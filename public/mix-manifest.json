@@ -1,11 +1,11 @@
 {
-    "/js/plugin/jquery/jquery.js": "/js/plugin/jquery/jquery.js",
-    "/js/plugin/select2/select2.js": "/js/plugin/select2/select2.js",
-    "/js/app.js": "/js/app.js",
-    "/js/team/calendar.js": "/js/team/calendar.js",
-    "/css/app.css": "/css/app.css",
-    "/css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css": "/css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css",
-    "/css/plugins/select2/select2.min.css": "/css/plugins/select2/select2.min.css",
-    "/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css": "/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
-    "/css/plugins/fontawesome/all.min.css": "/css/plugins/fontawesome/all.min.css"
+    "/js/plugin/jquery/jquery.js": "/js/plugin/jquery/jquery.js?id=8f08cbfa126fed2ce040",
+    "/js/plugin/select2/select2.js": "/js/plugin/select2/select2.js?id=36448b620087cf568de1",
+    "/js/app.js": "/js/app.js?id=fcebf61db0964588d2fa",
+    "/js/team/calendar.js": "/js/team/calendar.js?id=4dd199111fde1021af4f",
+    "/css/app.css": "/css/app.css?id=3dea3090a720cfa3c489",
+    "/css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css": "/css/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css?id=fff8cb703242482147d4",
+    "/css/plugins/select2/select2.min.css": "/css/plugins/select2/select2.min.css?id=500b82a1ce1b8519c0a0",
+    "/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css": "/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css?id=1d4623a49db71b735e16",
+    "/css/plugins/fontawesome/all.min.css": "/css/plugins/fontawesome/all.min.css?id=5422bf61cf56ac5a2a15"
 }

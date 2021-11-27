@@ -73,7 +73,7 @@
                 <h6>Calendário</h6>
                 <div id="container-calendar" class="row"></div>
                 <div class="mt-2 d-flex justify-content-center">
-                    <a href="{{route('admin.teachers.index')}}" class="btn btn-danger">Voltar</a>
+                    <a href="{{route('admin.teams.index')}}" class="btn btn-danger">Voltar</a>
                 </div>
             </div>
         </div>
