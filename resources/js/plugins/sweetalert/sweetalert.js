@@ -14,21 +14,24 @@ window.notify = function (type, message) {
 
 window.confirmation = function(idButton, question, type,isConfirmed,buttonConfirmText = 'Sim', buttonCancelText = 'Não') {
     try{
-        return document.getElementById(idButton).addEventListener('click', function(event) {
-            Swal.fire({
-                text: question,
-                icon: type,
-                showConfirmButton: true,
-                confirmButtonText: buttonConfirmText,
-                confirmButtonColor: "#EE0000",
-                showCancelButton: true,
-                cancelButtonText: buttonCancelText,
-            }).then(result => {
-                if(result.isConfirmed) {
-                    isConfirmed(event);
-                }
-            });
-        });
+        const buttons = document.getElementsByClassName(idButton);
+        for(let i =0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function(event) {
+                Swal.fire({
+                    text: question,
+                    icon: type,
+                    showConfirmButton: true,
+                    confirmButtonText: buttonConfirmText,
+                    confirmButtonColor: "#EE0000",
+                    showCancelButton: true,
+                    cancelButtonText: buttonCancelText,
+                }).then(result => {
+                    if(result.isConfirmed) {
+                        isConfirmed(event);
+                    }
+                });
+            })
+        }
     }catch(e) {
 
     }

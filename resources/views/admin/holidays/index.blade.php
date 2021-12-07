@@ -1,33 +1,29 @@
 <x-app-layout>
     <x-slot name="header">
-        Professores
+        Calendário do ano
     </x-slot>
 
-    <x-slot name="breadcrumb">
-        <a href="{{route('admin.teachers.create')}}" class="btn btn-primary">Cadastrar</a>
-    </x-slot>
     <div class="container-fluid">
         <div class="card card-primary card-outline">
             <div class="card-body">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Matricula</th>
+                            <th>Ano</th>
+                            <th>Possui calendário próprio ?</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($teachers as $teacher)
+                        @forelse($holidays as $holiday)
                             <tr>
-                                <td><a href="{{route('admin.teachers.show', $teacher->id)}}">{{$teacher->user->name}}</a></td>
-                                <td>{{$teacher->user->email}}</td>
-                                <td>{{$teacher->registration}}</td>
+                                <td><a href="{{route('admin.holidays.show', $holiday->year)}}">{{$holiday->year}}</a></td>
+                                <td>
+                                    {{$holiday->calendar}}
+                                </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{route('admin.teachers.edit', $teacher->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <button type="button" data-teacher-id="{{$teacher->id}}" class=delete-button btn btn-danger"><i data-teacher-id="{{$teacher->id}}" class="fas fa-trash"></i></button>
+                                        <button type="button" id="delete-button" data-holiday-id="{{$holiday->year}}" class="btn btn-danger"><i data-holiday-id="{{$holiday->year}}" class="fas fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -43,7 +39,7 @@
                     </tbody>
                 </table>
                 <div class="mt-2 d-flex justify-content-end">
-                    {{$teachers->links()}}
+                    {{$holidays->links()}}
                 </div>
             </div>
         </div>
@@ -51,8 +47,8 @@
     @push('script')
         <script>
             confirmation('delete-button', 'Você realmente deseja excluir ?', 'info', function(e) {
-                const teacherId = e.target.getAttribute('data-teacher-id');
-                fetch(`/admin/teachers/${teacherId}`, {
+                const teacherId = e.target.getAttribute('data-holiday-id');
+                fetch(`/admin/holidays/${teacherId}`, {
                     method: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': '{{csrf_token()}}'

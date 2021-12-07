@@ -48,17 +48,31 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="teacher_id">Professor</label>
-                        <select name="teacher_id" id="teacher_id" class="form-control">
-                            <option value="" selected>Selecione</option>
-                            @foreach($teachers as $teacher)
-                                <option value="{{$teacher->id}}" {{$event->teacher_id == $teacher->id ? 'selected' : ''}}>{{$teacher->user->name}}</option>
-                            @endforeach
-                        </select>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="teacher_id">Professor</label>
+                                <select name="teacher_id" id="teacher_id" class="form-control">
+                                    <option value="">Selecione</option>
+                                    @foreach($teachers as $teacher)
+                                        <option value="{{$teacher->id}}" {{$event->teacher_id == $teacher->id ? 'selected' : ''}}>{{$teacher->user->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="team_id">Turma</label>
+                                <select multiple name="team_id[]" id="team_id" class="form-control">
+                                    @foreach($teams as $team)
+                                        <option value="{{$team->id}}" {{$event->teams->contains($team->id) ? 'selected' : ''}}>{{$team->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="d-grid gap-3">
-                        <button class="btn btn-primary">Cadastrar</button>
+                        <button class="btn btn-primary">Salvar</button>
                         <a href="{{route('admin.events.index')}}" class="btn btn-danger">Voltar</a>
                     </div>
                 </form>
@@ -68,6 +82,10 @@
     @push('script')
         <script>
             $('#teacher_id').select2();
+            $('#team_id').select2({
+                placeholder: "Selecione",
+                theme: "classic",
+            });
         </script>
     @endpush
 </x-app-layout>

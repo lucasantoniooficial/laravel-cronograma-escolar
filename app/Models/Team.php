@@ -27,7 +27,7 @@ class Team extends Model
 
     public function events()
     {
-        return $this->belongsToMany(Event::class,'event_team','teams_id','event_id');
+        return $this->belongsToMany(Event::class,'event_team');
     }
 
     public function weeks()

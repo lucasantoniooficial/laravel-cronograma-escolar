@@ -7,6 +7,8 @@ use App\Http\Requests\Event\RequestCreate;
 use App\Http\Requests\Event\RequestUpdate;
 use App\Models\Event;
 use App\Models\Teacher;
+use App\Models\Team;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -33,9 +35,13 @@ class EventController extends Controller
     public function create()
     {
         $teachers = Teacher::with('user')->get();
+        $teams = Team::all()->filter(function($item) {
+            return Carbon::createFromFormat('d/m/Y', $item->end)->gte(now());
+        })->values();
 
         return view('admin.event.create', [
-            'teachers' => $teachers
+            'teachers' => $teachers,
+            'teams' => $teams
         ]);
     }
 
@@ -49,7 +55,11 @@ class EventController extends Controller
     {
         $data = $request->validated();
 
-        Event::create($data);
+        $event = Event::create($data);
+
+        if($data['team_id']) {
+            $event->teams()->attach($data['team_id']);
+        }
 
         return back();
     }
@@ -60,9 +70,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        //
+        return view('admin.event.show', ['event' => $event]);
     }
 
     /**
@@ -74,10 +84,14 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         $teachers = Teacher::with('user')->get();
+        $teams = Team::all()->filter(function($item) {
+            return Carbon::createFromFormat('d/m/Y', $item->end)->gte(now());
+        })->values();
 
         return view('admin.event.edit', [
             'event' => $event,
-            'teachers' => $teachers
+            'teachers' => $teachers,
+            'teams' => $teams
         ]);
     }
 
@@ -93,6 +107,8 @@ class EventController extends Controller
         $data = $request->validated();
 
         $event->update($data);
+
+        $event->teams()->sync($data['team_id']);
 
         return redirect()->route('admin.events.index');
     }

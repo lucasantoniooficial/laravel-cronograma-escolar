@@ -23,7 +23,7 @@
                             <th>Nome</th>
                             <th>Código</th>
                             <th>Início</th>
-                            <th>Quantidade de horas</th>
+                            <th>Carga horária</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +31,7 @@
                             <tr>
                                 <td>{{$team->name}}</td>
                                 <td>{{$team->code}}</td>
-                                <td>{{$team->start}}</td>
+                                <td>{{$team->start->format('d/m/Y')}}</td>
                                 <td>{{$team->hours}}</td>
                             </tr>
                          @empty
@@ -54,7 +54,7 @@
                         @forelse($teacher->events as $event)
                             <tr>
                                 <td>{{$event->name}}</td>
-                                <td>{{$event->date}}</td>
+                                <td>{{$event->date->format('d/m/Y')}}</td>
                             </tr>
                         @empty
                             <tr>

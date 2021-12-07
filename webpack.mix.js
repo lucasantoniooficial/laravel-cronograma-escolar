@@ -27,6 +27,7 @@ mix.js([
 ], 'public/js/app.js');
 
 mix.js('resources/js/team/calendar.js','public/js/team');
+mix.js('resources/js/holidays/calendar.js','public/js/holidays');
 
 if (mix.inProduction()) {
     mix.version();

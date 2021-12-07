@@ -3106,9 +3106,9 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!***************************************!*\
-  !*** ./resources/js/team/calendar.js ***!
-  \***************************************/
+/*!*******************************************!*\
+  !*** ./resources/js/holidays/calendar.js ***!
+  \*******************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -3121,41 +3121,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-  var id, years, container;
+  var year, events, container;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          id = window.location.pathname.split('/admin/teams/')[1];
+          year = window.location.pathname.split('/admin/holidays/')[1];
           _context.next = 3;
-          return axios.get("/api/events/".concat(id));
+          return axios.get("/api/events/year/".concat(year));
 
         case 3:
-          years = _context.sent.data;
+          events = _context.sent.data;
           container = document.getElementById('container-calendar');
-          years.forEach(function (months, k) {
-            months.forEach(function (days, key) {
-              var containerCol = document.createElement('div');
-              containerCol.setAttribute('class', 'col-6');
-              var containerCalendar = document.createElement('div');
-              containerCalendar.setAttribute('id', "calendar-".concat(k, "-").concat(key));
-              container.appendChild(containerCol);
-              containerCol.appendChild(containerCalendar);
-              var calendar = new FullCalendar.Calendar(document.getElementById("calendar-".concat(k, "-").concat(key)), {
-                initialView: 'dayGridMonth',
-                locale: 'pt-br',
-                themeSystem: 'bootstrap',
-                headerToolbar: {
-                  start: 'title',
-                  center: '',
-                  end: ''
-                },
-                contentHeight: 520,
-                initialDate: days[0].start,
-                events: days
-              });
-              calendar.render();
+          events.forEach(function (events, k) {
+            var containerCol = document.createElement('div');
+            containerCol.setAttribute('class', 'col-6');
+            var containerCalendar = document.createElement('div');
+            containerCalendar.setAttribute('id', "calendar-".concat(k));
+            containerCol.appendChild(containerCalendar);
+            container.appendChild(containerCol);
+            var calendar = new FullCalendar.Calendar(document.getElementById("calendar-".concat(k)), {
+              initialView: 'dayGridMonth',
+              locale: 'pt-br',
+              themeSystem: 'bootstrap',
+              headerToolbar: {
+                start: 'title',
+                center: '',
+                end: ''
+              },
+              contentHeight: 520,
+              initialDate: events[0].start,
+              events: events
             });
+            calendar.render();
           });
 
         case 6:

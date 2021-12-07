@@ -2,21 +2,11 @@
 
 namespace App\Observers;
 
+use App\Jobs\TeamIncludeRelationEventRecorrencyJob;
 use App\Models\Team;
 
 class TeamObserver
 {
-    public function retrieved(Team $team)
-    {
-        $team->with([
-            'events' => function($query) use ($team){
-                $query->whereHas('teams', function($query) use ($team) {
-                    $query->where('id',$team->id);
-                })->orWhereHas('events', function($query) {
-                    $query->where('recorrency',1);
-                });
-            }]);
-    }
 
     /**
      * Handle the Team "created" event.
@@ -26,7 +16,7 @@ class TeamObserver
      */
     public function created(Team $team)
     {
-        //
+        TeamIncludeRelationEventRecorrencyJob::dispatch($team);
     }
 
     /**

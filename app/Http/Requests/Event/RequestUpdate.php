@@ -28,6 +28,7 @@ class RequestUpdate extends FormRequest
             'date' => 'required',
             'description' => 'sometimes',
             'teacher_id' => 'sometimes',
+            'team_id' => 'sometimes',
             'recorrency' => 'sometimes'
         ];
     }

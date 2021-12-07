@@ -25,7 +25,7 @@
                             <td>
                                 <div class="btn-group">
                                     <a href="{{route('admin.events.edit', $event->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                    <button type="button" id="delete-button" data-id="{{$event->id}}" class="btn btn-danger"><i data-id="{{$event->id}}" class="fas fa-trash"></i></button>
+                                    <button type="button" data-id="{{$event->id}}" class="delete-button btn btn-danger"><i data-id="{{$event->id}}" class="fas fa-trash"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -40,6 +40,9 @@
                     @endforelse
                     </tbody>
                 </table>
+                <div class="mt-2 d-flex justify-content-end">
+                    {{$events->links()}}
+                </div>
             </div>
         </div>
     </div>

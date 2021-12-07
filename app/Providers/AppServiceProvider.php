@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Team;
-use App\Observers\TeamObserver;
-use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         setlocale(LC_ALL, 'ptb');
-        Team::observe(TeamObserver::class);
+
+        Paginator::useBootstrap();
     }
 }

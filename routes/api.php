@@ -16,3 +16,4 @@ use App\Http\Controllers\Admin\Api\CalendarController;
 */
 
 Route::get('events/{team}', [CalendarController::class, 'index']);
+Route::get('events/year/{year}', [CalendarController::class, 'events']);

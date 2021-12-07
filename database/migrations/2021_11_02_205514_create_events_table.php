@@ -26,7 +26,7 @@ class CreateEventsTable extends Migration
 
         Schema::create('event_team', function(Blueprint $table) {
            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
-           $table->foreignId('teams_id')->constrained('teams')->cascadeOnDelete();
+           $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete();
         });
     }
 
