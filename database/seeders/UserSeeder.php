@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -20,10 +21,17 @@ class UserSeeder extends Seeder
            'password' => 123
        ])->roles()->attach(1);
 
-        User::create([
+
+       $user = User::create([
             'name' => 'Teacher',
             'email' => 'teacher@email.com',
             'password' => 123
-        ])->roles()->attach(2);
+        ]);
+
+       $user->roles()->attach(2);
+
+       $user->teacher()->create([
+           'registration' => 123
+       ]);
     }
 }

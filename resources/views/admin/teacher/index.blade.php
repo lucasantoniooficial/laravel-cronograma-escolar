@@ -27,7 +27,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('admin.teachers.edit', $teacher->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <button type="button" data-teacher-id="{{$teacher->id}}" class=delete-button btn btn-danger"><i data-teacher-id="{{$teacher->id}}" class="fas fa-trash"></i></button>
+                                        <button type="button" data-teacher-id="{{$teacher->id}}" class="delete-button btn btn-danger"><i data-teacher-id="{{$teacher->id}}" class="fas fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>

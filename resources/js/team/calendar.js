@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 document.addEventListener('DOMContentLoaded', async  function() {
-    const id = window.location.pathname.split('/admin/teams/')[1];
+    const id = window.location.pathname.split('/admin/teams/')[1] ?? window.location.pathname.split('/teams/')[1];
     const years = (await axios.get(`/api/events/${id}`)).data;
     const container = document.getElementById('container-calendar');
     years.forEach((months, k) => {
