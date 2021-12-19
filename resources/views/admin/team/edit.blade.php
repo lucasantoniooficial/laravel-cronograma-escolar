@@ -67,7 +67,7 @@
                     </div>
                     <div class="d-grid gap-3">
                         <button class="btn btn-primary">Salvar</button>
-                        <a href="{{route('admin.events.index')}}" class="btn btn-danger">Voltar</a>
+                        <a href="{{route('admin.teams.index')}}" class="btn btn-danger">Voltar</a>
                     </div>
                 </form>
             </div>
