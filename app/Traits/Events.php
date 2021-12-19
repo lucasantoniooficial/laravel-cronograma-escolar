@@ -18,7 +18,9 @@ trait Events
                     }
 
                     $j = 0;
+                    $datas->push($start->format('Y-m-d'));
                 }
+
                 $start->addDay(1);
             }
         }
