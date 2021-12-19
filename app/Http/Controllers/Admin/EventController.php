@@ -57,7 +57,7 @@ class EventController extends Controller
 
         $event = Event::create($data);
 
-        if($data['team_id']) {
+        if(isset($data['team_id'])) {
             $event->teams()->attach($data['team_id']);
         }
 

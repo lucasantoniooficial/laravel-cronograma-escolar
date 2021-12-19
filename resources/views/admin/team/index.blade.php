@@ -59,7 +59,7 @@
         <script>
             confirmation('delete-button', 'Você realmente deseja excluir ?', 'info', function(e) {
                 const id = e.target.getAttribute('data-id');
-                fetch(`/admin/events/${id}`, {
+                fetch(`/admin/teams/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': '{{csrf_token()}}'
